@@ -10,13 +10,14 @@
   <link rel="stylesheet" href="css/next-style.css" />
 </head>
 <body>
-  <header>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header role="banner">
     <div class="container">
       <a href="index.html" class="logo">Next Chapter Travel</a>
-      <nav>
+      <nav role="navigation" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="wdw.html">Walt Disney World</a>
-        <a href="cruise.html" class="active">Disney Cruise</a>
+        <a href="cruise.html" class="active" aria-current="page">Disney Cruise</a>
         <a href="aulani.html">Aulani</a>
         <a href="adventures.html">Adventures by Disney</a>
         <a href="international.html">International Parks</a>
@@ -25,8 +26,8 @@
     </div>
   </header>
 
-  <section class="hero">
-    <div class="starfield"></div>
+  <section class="hero" id="main-content">
+    <div class="starfield" aria-hidden="true"></div>
     <div class="hero-content">
       <h1>Sail Away with Disney Cruise Line</h1>
       <p>Embark on an unforgettable voyage filled with magic, entertainment and relaxation.</p>
@@ -58,7 +59,7 @@
     </section>
   </main>
 
-  <footer>
+  <footer role="contentinfo">
     <p>&copy; 2026 Next Chapter Travel. All rights reserved.</p>
   </footer>
 </body>
