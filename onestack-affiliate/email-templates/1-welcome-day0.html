@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to ONE STACK Affiliate Program</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; background-color: #f4f4f4;">
+  <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #f4f4f4;">
+    <tbody>
+      <tr>
+        <td style="padding: 20px 0;">
+          <table role="presentation" style="width: 100%; max-width: 600px; margin: 0 auto; border-collapse: collapse; background-color: #ffffff; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <tbody>
+              <!-- Header -->
+              <tr>
+                <td style="padding: 40px 40px 30px; background-color: #000000; color: #ffffff; text-align: center;">
+                  <h1 style="margin: 0 0 10px; font-size: 28px; font-weight: 700; line-height: 1.3;">
+                    Welcome to the ONE STACK Affiliate Program
+                  </h1>
+                  <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #cccccc;">
+                    Built for builders, creators, and operators who ship.
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Greeting -->
+              <tr>
+                <td style="padding: 30px 40px 20px;">
+                  <p style="margin: 0 0 15px; font-size: 16px; line-height: 1.6; color: #333333;">
+                    Hi {{ first_name | default:"there" }},
+                  </p>
+                  <p style="margin: 0 0 15px; font-size: 16px; line-height: 1.6; color: #333333;">
+                    Thanks for joining the <strong>ONE STACK</strong> affiliate program powered by <strong>1Commerce LLC</strong> in Portland, Oregon. You're now part of a crew of builders who take their craft seriously.
+                  </p>
+
+                  <p style="margin: 0 0 15px; font-size: 16px; line-height: 1.6; color: #333333;">
+                    Here's what you get out of the gate:
+                  </p>
+                  <ul style="margin: 0 0 20px; padding-left: 20px; font-size: 16px; line-height: 1.8; color: #333333;">
+                    <li>Base <strong>20–25% commission</strong> on every referred sale</li>
+                    <li>Personal discount code for your audience</li>
+                    <li>Access to our full asset library and brand kit</li>
+                    <li>Priority access to new ONE STACK drops</li>
+                  </ul>
+                </td>
+              </tr>
+
+              <!-- Quick-start Details -->
+              <tr>
+                <td style="padding: 20px 40px;">
+                  <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #f9f9f9; border: 1px solid #e0e0e0;">
+                    <tbody>
+                      <tr>
+                        <td style="padding: 20px; font-size: 15px; line-height: 1.6; color: #333333;">
+                          <strong style="font-size: 16px; display: block; margin-bottom: 10px;">Your quick-start details</strong>
+                          Affiliate Link: {{ affiliate_link }}<br>
+                          Discount Code: {{ discount_code }}<br>
+                          Commission Rate: {{ commission_rate }}%
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- 3 Steps -->
+              <tr>
+                <td style="padding: 20px 40px;">
+                  <p style="margin: 0 0 15px; font-size: 16px; line-height: 1.6; color: #333333;">
+                    <strong>3 steps to your first sale:</strong>
+                  </p>
+                  <ol style="margin: 0 0 20px; padding-left: 20px; font-size: 16px; line-height: 1.8; color: #333333;">
+                    <li>Download the affiliate kit &amp; assets (button below).</li>
+                    <li>Post your first desk-setup or unboxing using ONE STACK.</li>
+                    <li>Drop your link + code in the description and pin it.</li>
+                  </ol>
+
+                  <!-- CTA Button -->
+                  <table role="presentation" style="margin: 20px 0; border-collapse: collapse;">
+                    <tbody>
+                      <tr>
+                        <td style="border-radius: 4px; background-color: #000000;">
+                          <a href="https://onestack.com/affiliates/kit" style="display: inline-block; padding: 14px 30px; font-size: 16px; font-weight: 600; color: #ffffff; text-decoration: none; border-radius: 4px;">
+                            Download Affiliate Kit
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <p style="margin: 15px 0; font-size: 16px; line-height: 1.6; color: #333333;">
+                    If you get stuck, hit reply any time or book a quick call:
+                    <a href="https://calendly.com/skdev-1commercesolutions/30min" style="color: #0066cc; text-decoration: none;">strategy session</a>.
+                  </p>
+                  <p style="margin: 15px 0; font-size: 16px; line-height: 1.6; color: #333333;">
+                    — Keith @ 1Commerce LLC
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Footer -->
+              <tr>
+                <td style="padding: 30px 40px; background-color: #f9f9f9; border-top: 1px solid #e0e0e0;">
+                  <p style="margin: 0 0 10px; font-size: 13px; line-height: 1.6; color: #666666; text-align: center;">
+                    1Commerce LLC · Portland, Oregon · 1CommerceSolutions.shop
+                  </p>
+                  <p style="margin: 0; font-size: 12px; line-height: 1.6; color: #999999; text-align: center;">
+                    You're receiving this email because you joined the ONE STACK affiliate program.
+                    <a href="{{ unsubscribe_url }}" style="color: #666666; text-decoration: underline;">Unsubscribe</a>
+                  </p>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
