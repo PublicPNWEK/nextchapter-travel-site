@@ -13,9 +13,3 @@ Referrer-Policy = "strict-origin-when-cross-origin"
 
 # HSTS header for production HTTPS enforcement
 # Strict-Transport-Security = "max-age=31536000; includeSubDomains"
-
-# Handle 404 - serve a friendly page instead of default
-[[redirects]]
-from = "/404"
-to = "/index.html"
-status = 404
