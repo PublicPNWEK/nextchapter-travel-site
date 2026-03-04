@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self';">
+  <title>Book Your Journey - Next Chapter Travel</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .booking-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 40px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .booking-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .booking-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .booking-header p {
+      color: #7f8c8d;
+      font-size: 1.1rem;
+    }
+
+    .form-section {
+      margin-bottom: 30px;
+    }
+
+    .form-section h2 {
+      font-size: 1.5rem;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #c5a880;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    .form-group label .required {
+      color: #e74c3c;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #c5a880;
+    }
+
+    select.form-control {
+      cursor: pointer;
+    }
+
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .guest-counter {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .guest-counter button {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #ddd;
+      background: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+    }
+
+    .guest-counter button:hover {
+      background: #c5a880;
+      color: white;
+      border-color: #c5a880;
+    }
+
+    .guest-counter span {
+      min-width: 40px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .btn {
+      padding: 15px 40px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: #c5a880;
+      color: white;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background: #b39168;
+    }
+
+    .btn-primary:disabled {
+      background: #95a5a6;
+      cursor: not-allowed;
+    }
+
+    .error-message, .success-message, .info-message {
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .error-message {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .success-message {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .info-message {
+      background: #d1ecf1;
+      color: #0c5460;
+    }
+
+    .login-prompt {
+      background: #fff3cd;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .login-prompt a {
+      color: #c5a880;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-prompt a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .booking-container {
+        padding: 20px;
+        margin: 20px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="booking-container" id="main-content">
+    <div class="booking-header">
+      <h1>Book Your Dream Journey</h1>
+      <p>Let us plan your perfect travel experience</p>
+    </div>
+
+    <div id="loginPrompt" class="login-prompt" style="display: none;">
+      <p>Please <a href="/login.html">login</a> or <a href="/register.html">create an account</a> to make a booking.</p>
+      <p><small>Or continue as a guest - we'll create an account for you!</small></p>
+    </div>
+
+    <div id="errorMessage" class="error-message"></div>
+    <div id="successMessage" class="success-message"></div>
+    <div id="infoMessage" class="info-message"></div>
+
+    <form id="bookingForm">
+      <!-- Trip Details -->
+      <div class="form-section">
+        <h2>Trip Details</h2>
+        
+        <div class="form-group">
+          <label for="tripType">
+            Trip Type <span class="required">*</span>
+          </label>
+          <select id="tripType" class="form-control" required>
+            <option value="">Select trip type...</option>
+            <option value="disney-world">Walt Disney World</option>
+            <option value="cruise">Disney Cruise Line</option>
+            <option value="aulani">Aulani Resort</option>
+            <option value="adventures">Adventures by Disney</option>
+            <option value="international">International Disney Parks</option>
+            <option value="custom">Custom Luxury Travel</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="destination">
+            Destination <span class="required">*</span>
+          </label>
+          <input 
+            type="text" 
+            id="destination" 
+            class="form-control" 
+            required 
+            placeholder="e.g., Orlando, Florida"
+          >
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="startDate">
+              Start Date <span class="required">*</span>
+            </label>
+            <input 
+              type="date" 
+              id="startDate" 
+              class="form-control" 
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="endDate">
+              End Date <span class="required">*</span>
+            </label>
+            <input 
+              type="date" 
+              id="endDate" 
+              class="form-control" 
+              required
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Guest Information -->
+      <div class="form-section">
+        <h2>Guest Information</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Adults (18+)</label>
+            <div class="guest-counter">
+              <button type="button" onclick="changeGuests('adults', -1)">-</button>
+              <span id="adultsCount">1</span>
+              <button type="button" onclick="changeGuests('adults', 1)">+</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Children (Under 18)</label>
+            <div class="guest-counter">
+              <button type="button" onclick="changeGuests('children', -1)">-</button>
+              <span id="childrenCount">0</span>
+              <button type="button" onclick="changeGuests('children', 1)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="form-section" id="contactSection">
+        <h2>Contact Information</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">
+              First Name <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="firstName" 
+              class="form-control" 
+              required 
+              placeholder="John"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">
+              Last Name <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="lastName" 
+              class="form-control" 
+              required 
+              placeholder="Doe"
+            >
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">
+              Email <span class="required">*</span>
+            </label>
+            <input 
+              type="email" 
+              id="email" 
+              class="form-control" 
+              required 
+              placeholder="your.email@example.com"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="phone">
+              Phone <span class="required">*</span>
+            </label>
+            <input 
+              type="tel" 
+              id="phone" 
+              class="form-control" 
+              required 
+              placeholder="+1 (555) 123-4567"
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Special Requests -->
+      <div class="form-section">
+        <h2>Special Requests</h2>
+        
+        <div class="form-group">
+          <label for="specialRequests">
+            Any special requests or requirements?
+          </label>
+          <textarea 
+            id="specialRequests" 
+            class="form-control" 
+            placeholder="Tell us about dietary restrictions, accessibility needs, celebrations, or any special requests..."
+            maxlength="1000"
+          ></textarea>
+          <small style="color: #7f8c8d;">Max 1000 characters</small>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="submitBtn">
+        Submit Booking Request
+      </button>
+
+      <p style="text-align: center; margin-top: 20px; color: #7f8c8d; font-size: 0.9rem;">
+        By submitting this form, you agree to be contacted by our travel specialists regarding your booking.
+      </p>
+    </form>
+  </div>
+
+  <script>
+    const API_BASE = '/api';
+    let authToken = localStorage.getItem('authToken');
+    let currentUser = null;
+
+    // Guest counters
+    let guestCounts = { adults: 1, children: 0 };
+
+    function changeGuests(type, delta) {
+      guestCounts[type] = Math.max(0, guestCounts[type] + delta);
+      if (type === 'adults' && guestCounts[type] < 1) {
+        guestCounts[type] = 1; // At least 1 adult required
+      }
+      document.getElementById(`${type}Count`).textContent = guestCounts[type];
+    }
+
+    // Set minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('startDate').min = today;
+    document.getElementById('endDate').min = today;
+
+    // Update end date minimum when start date changes
+    document.getElementById('startDate').addEventListener('change', (e) => {
+      document.getElementById('endDate').min = e.target.value;
+    });
+
+    // Check if user is logged in
+    async function checkAuth() {
+      if (!authToken) {
+        // Show login prompt but allow guest booking
+        return null;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/auth/me`, {
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          currentUser = data.user;
+          
+          // Pre-fill contact information
+          document.getElementById('firstName').value = currentUser.firstName || '';
+          document.getElementById('lastName').value = currentUser.lastName || '';
+          document.getElementById('email').value = currentUser.email || '';
+          document.getElementById('phone').value = currentUser.phone || '';
+          
+          // Make contact fields readonly
+          ['firstName', 'lastName', 'email'].forEach(field => {
+            document.getElementById(field).readOnly = true;
+          });
+
+          return currentUser;
+        }
+      } catch (error) {
+        console.error('Auth check failed:', error);
+      }
+
+      return null;
+    }
+
+    function showError(message) {
+      const errorEl = document.getElementById('errorMessage');
+      errorEl.textContent = message;
+      errorEl.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => {
+        errorEl.style.display = 'none';
+      }, 5000);
+    }
+
+    function showSuccess(message) {
+      const successEl = document.getElementById('successMessage');
+      successEl.textContent = message;
+      successEl.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showInfo(message) {
+      const infoEl = document.getElementById('infoMessage');
+      infoEl.textContent = message;
+      infoEl.style.display = 'block';
+    }
+
+    // Handle form submission
+    document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      // Validate dates
+      const startDate = new Date(document.getElementById('startDate').value);
+      const endDate = new Date(document.getElementById('endDate').value);
+
+      if (endDate <= startDate) {
+        showError('End date must be after start date');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Booking Request';
+        return;
+      }
+
+      // Prepare booking data
+      const bookingData = {
+        tripType: document.getElementById('tripType').value,
+        destination: document.getElementById('destination').value,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        numberOfGuests: {
+          adults: guestCounts.adults,
+          children: guestCounts.children,
+        },
+        specialRequests: document.getElementById('specialRequests').value,
+      };
+
+      // If user is not logged in, we need to register them first
+      if (!currentUser) {
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+
+        // Generate a secure random password for the user
+        // Note: In production, this should be sent via email with a password reset link
+        const tempPassword = generateSecurePassword();
+
+        try {
+          // Register user (temporary password will need to be reset)
+          // TODO: Implement email notification with password reset link
+          const registerResponse = await fetch(`${API_BASE}/auth/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              firstName,
+              lastName,
+              email,
+              phone,
+              password: tempPassword,
+            }),
+          });
+
+          const registerData = await registerResponse.json();
+
+          if (!registerResponse.ok) {
+            throw new Error(registerData.message || 'Registration failed');
+          }
+
+          // Store token
+          authToken = registerData.token;
+          localStorage.setItem('authToken', authToken);
+          currentUser = registerData.user;
+
+          showInfo(
+            `Account created! An email has been sent to ${email} with login instructions. ` +
+            `For now, you can continue with your booking.`
+          );
+        } catch (error) {
+          // If registration fails (user might already exist), try to continue
+          console.error('Registration error:', error);
+          showError('Unable to create account. Please login if you already have an account.');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Booking Request';
+          return;
+        }
+      }
+
+      // Submit booking
+      try {
+        const response = await fetch(`${API_BASE}/bookings`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`,
+          },
+          body: JSON.stringify(bookingData),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Booking submission failed');
+        }
+
+        // Success!
+        showSuccess(
+          `Thank you! Your booking request has been submitted. Booking number: ${data.booking.bookingNumber}. ` +
+          `Our travel specialists will contact you within 24 hours.`
+        );
+
+        // Reset form
+        document.getElementById('bookingForm').reset();
+        guestCounts = { adults: 1, children: 0 };
+        document.getElementById('adultsCount').textContent = '1';
+        document.getElementById('childrenCount').textContent = '0';
+
+        // Scroll to success message
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (error) {
+        showError(error.message);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Booking Request';
+      }
+    });
+
+    // Generate secure random password
+    function generateSecurePassword() {
+      const length = 16;
+      const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+      let password = '';
+      const randomValues = new Uint8Array(length);
+      crypto.getRandomValues(randomValues);
+      for (let i = 0; i < length; i++) {
+        password += charset[randomValues[i] % charset.length];
+      }
+      return password;
+    }
+
+    // Initialize
+    checkAuth();
+  </script>
+</body>
+</html>
