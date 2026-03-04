@@ -6,41 +6,125 @@
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; form-action 'self';">
+<meta name="description" content="Contact Next Chapter Travel to start planning your Disney vacation. Specializing in Walt Disney World, Disney Cruise Line, Aulani, and international Disney parks.">
 <title>Contact - Next Chapter Travel</title>
 <link rel="stylesheet" href="css/next-style.css">
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 <header role="banner">
-    <nav role="navigation" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="wdw.html">Walt Disney World</a>
-        <a href="cruise.html">Disney Cruise</a>
-        <a href="aulani.html">Aulani</a>
-        <a href="adventures.html">Adventures by Disney</a>
-        <a href="international.html">International Parks</a>
-        <a href="contact.html" class="active" aria-current="page">Contact</a>
-    </nav>
+    <div class="container">
+        <a href="index.html" class="logo">Next Chapter Travel</a>
+        <nav role="navigation" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="wdw.html">Walt Disney World</a>
+            <a href="cruise.html">Disney Cruise</a>
+            <a href="aulani.html">Aulani</a>
+            <a href="adventures.html">Adventures by Disney</a>
+            <a href="international.html">International Parks</a>
+            <a href="contact.html" class="active" aria-current="page">Contact</a>
+        </nav>
+    </div>
 </header>
 
 <section class="hero" id="main-content">
+    <div class="starfield" aria-hidden="true"></div>
     <div class="hero-content">
-        <h1>Contact Us</h1>
-        <p>We'd love to hear from you! Reach out to start planning your next magical journey.</p>
-        <a href="mailto:info@nextchaptertravel.com" class="button">Send Email</a>
+        <h1>Plan Your Magical Journey</h1>
+        <p>Let us craft the perfect Disney vacation for you and your family. From dining reservations to park itineraries, we handle every detail.</p>
     </div>
 </section>
 
 <section class="content" role="main">
-    <h2>Get In Touch</h2>
-    <p>Please fill out the form below or email us directly at <a href="mailto:info@nextchaptertravel.com">info@nextchaptertravel.com</a>.</p>
-    <!-- Basic contact form placeholder -->
-    <form action="#" method="POST" novalidate aria-label="Contact form">
-        <label for="name">Name: <input type="text" id="name" name="name" required minlength="2" maxlength="100" aria-required="true"></label>
-        <label for="email">Email: <input type="email" id="email" name="email" required maxlength="254" aria-required="true"></label>
-        <label for="message">Message:<br><textarea id="message" name="message" rows="5" required minlength="10" maxlength="1000" aria-required="true"></textarea></label>
-        <button type="submit" class="button">Submit</button>
+    <h2>Start Your Trip Planning</h2>
+    <p>Fill out the form below and one of our Disney vacation specialists will contact you within 24 hours. You can also email us directly at <a href="mailto:info@nextchaptertravel.com">info@nextchaptertravel.com</a>.</p>
+    
+    <form action="#" method="POST" novalidate aria-label="Trip planning request form" class="trip-form">
+        <fieldset>
+            <legend>Your Information</legend>
+            <label for="name">Full Name:
+                <input type="text" id="name" name="name" required minlength="2" maxlength="100" aria-required="true" placeholder="Jane Smith">
+            </label>
+            <label for="email">Email Address:
+                <input type="email" id="email" name="email" required maxlength="254" aria-required="true" placeholder="jane@example.com">
+            </label>
+            <label for="phone">Phone Number (optional):
+                <input type="tel" id="phone" name="phone" maxlength="20" placeholder="(555) 123-4567">
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Trip Details</legend>
+            <label for="destination">Preferred Destination:
+                <select id="destination" name="destination" required aria-required="true">
+                    <option value="">Select a destination...</option>
+                    <option value="wdw">Walt Disney World (Florida)</option>
+                    <option value="cruise">Disney Cruise Line</option>
+                    <option value="aulani">Aulani Resort (Hawaii)</option>
+                    <option value="adventures">Adventures by Disney</option>
+                    <option value="disneyland">Disneyland (California)</option>
+                    <option value="paris">Disneyland Paris</option>
+                    <option value="tokyo">Tokyo Disney Resort</option>
+                    <option value="hong-kong">Hong Kong Disneyland</option>
+                    <option value="shanghai">Shanghai Disney Resort</option>
+                    <option value="multiple">Multiple Destinations</option>
+                    <option value="unsure">Not Sure Yet - Need Guidance</option>
+                </select>
+            </label>
+            <label for="travel-dates">Preferred Travel Dates:
+                <input type="text" id="travel-dates" name="travel-dates" maxlength="100" placeholder="e.g., June 15-22, 2026 or Summer 2026">
+            </label>
+            <label for="travelers">Number of Travelers:
+                <input type="number" id="travelers" name="travelers" min="1" max="50" placeholder="4">
+            </label>
+            <label for="traveler-ages">Traveler Ages (helps us plan age-appropriate activities):
+                <input type="text" id="traveler-ages" name="traveler-ages" maxlength="200" placeholder="e.g., Adults: 35, 38; Children: 8, 5">
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Special Requests & Interests</legend>
+            <label for="interests">What experiences are you most interested in?
+                <textarea id="interests" name="interests" rows="3" maxlength="500" placeholder="e.g., Character dining, fireworks cruises, princess makeovers, Star Wars experiences, relaxation, thrill rides..."></textarea>
+            </label>
+            <label for="special-occasions">Any special occasions? (Birthdays, anniversaries, first visits)
+                <input type="text" id="special-occasions" name="special-occasions" maxlength="200" placeholder="e.g., Daughter's 6th birthday on June 18">
+            </label>
+            <label for="budget">Approximate Budget Range (optional):
+                <select id="budget" name="budget">
+                    <option value="">Prefer not to say</option>
+                    <option value="value">Value-Focused</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="deluxe">Deluxe</option>
+                    <option value="luxury">Luxury / No Budget Constraints</option>
+                </select>
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Additional Information</legend>
+            <label for="message">Anything else we should know?
+                <textarea id="message" name="message" rows="4" maxlength="1000" placeholder="Tell us about your dream vacation, any accessibility needs, dietary restrictions, or questions you have..."></textarea>
+            </label>
+            <label for="referral">How did you hear about us?
+                <select id="referral" name="referral">
+                    <option value="">Select an option...</option>
+                    <option value="friend">Friend or Family Referral</option>
+                    <option value="social">Social Media</option>
+                    <option value="search">Search Engine</option>
+                    <option value="returning">Returning Client</option>
+                    <option value="other">Other</option>
+                </select>
+            </label>
+        </fieldset>
+
+        <button type="submit" class="btn-primary">Submit Trip Request</button>
     </form>
+</section>
+
+<section class="section-callout">
+    <h3>Why Choose Next Chapter Travel?</h3>
+    <p>As authorized Disney vacation planners with years of experience, we know the ins and outs of creating magical itineraries. From securing hard-to-get dining reservations to building day-by-day schedules, we handle every detail so you can focus on making memories.</p>
 </section>
 
 <footer role="contentinfo">
